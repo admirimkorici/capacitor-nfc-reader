@@ -19,4 +19,19 @@ public class nfcreaderPlugin extends Plugin {
         ret.put("value", implementation.echo(value));
         call.resolve(ret);
     }
+
+    @PluginMethod()
+    public void ReadNFCTag(PluginCall call){
+        String value = call.getString("msg") + " Test Test 1234";
+        JSObject ret = new JSObject();
+        ret.put("value", value);
+        call.resolve(ret);
+    }
+
+    @PluginMethod()
+    public void WriteNFCTag(PluginCall call) {
+        JSObject ret = new JSObject();
+        ret.put("value", 12345);
+        call.resolve(ret);
+    }
 }

@@ -1,6 +1,6 @@
 {
   "name": "nfcreader",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "description": "NFC Reader Plugin for Ionic Capacitor app",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@capacitor/android": "^5.0.0",
-    "@capacitor/core": "^5.0.0",
+    "@capacitor/core": "^5.7.2",
     "@capacitor/docgen": "^0.0.18",
     "@capacitor/ios": "^5.0.0",
     "@ionic/eslint-config": "^0.3.0",

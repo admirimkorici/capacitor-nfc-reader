@@ -7,4 +7,13 @@ export class nfcreaderWeb extends WebPlugin implements nfcreaderPlugin {
     console.log('ECHO', options);
     return options;
   }
+
+    async ReadNFCTag(options: { msg: string }): Promise<{ value: string }> {
+        return { value: options.msg };
+    }
+
+    async WriteNFCTag(number: number): Promise<{ value: number }> {
+        return { value: number };
+;
+    }
 }
