@@ -1,0 +1,63 @@
+{
+  "api": {
+    "name": "nfcreaderPlugin",
+    "slug": "nfcreaderplugin",
+    "docs": "",
+    "tags": [],
+    "methods": [
+      {
+        "name": "echo",
+        "signature": "(options: { value: string; }) => Promise<{ value: string; }>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: string; }"
+          }
+        ],
+        "returns": "Promise<{ value: string; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "echo"
+      },
+      {
+        "name": "ReadNFCTag",
+        "signature": "(options: { msg: string; }) => Promise<{ value: string; }>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ msg: string; }"
+          }
+        ],
+        "returns": "Promise<{ value: string; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "readnfctag"
+      },
+      {
+        "name": "WriteNFCTag",
+        "signature": "(number: number) => Promise<{ value: number; }>",
+        "parameters": [
+          {
+            "name": "number",
+            "docs": "",
+            "type": "number"
+          }
+        ],
+        "returns": "Promise<{ value: number; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "writenfctag"
+      }
+    ],
+    "properties": []
+  },
+  "interfaces": [],
+  "enums": [],
+  "typeAliases": [],
+  "pluginConfigs": []
+}
