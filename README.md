@@ -16,6 +16,9 @@ npx cap sync
 * [`echo(...)`](#echo)
 * [`ReadNFCTag(...)`](#readnfctag)
 * [`WriteNFCTag(...)`](#writenfctag)
+* [`startNfcReading(...)`](#startnfcreading)
+* [`stopNfcReading(...)`](#stopnfcreading)
+* [`setNfcDataCallback(...)`](#setnfcdatacallback)
 
 </docgen-index>
 
@@ -63,6 +66,51 @@ WriteNFCTag(number: number) => Promise<{ value: number; }>
 | **`number`** | <code>number</code> |
 
 **Returns:** <code>Promise&lt;{ value: number; }&gt;</code>
+
+--------------------
+
+
+### startNfcReading(...)
+
+```typescript
+startNfcReading(data: any) => Promise<any>
+```
+
+| Param      | Type             |
+| ---------- | ---------------- |
+| **`data`** | <code>any</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### stopNfcReading(...)
+
+```typescript
+stopNfcReading(data: any) => Promise<any>
+```
+
+| Param      | Type             |
+| ---------- | ---------------- |
+| **`data`** | <code>any</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setNfcDataCallback(...)
+
+```typescript
+setNfcDataCallback(data: any) => Promise<any>
+```
+
+| Param      | Type             |
+| ---------- | ---------------- |
+| **`data`** | <code>any</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
 
 --------------------
 

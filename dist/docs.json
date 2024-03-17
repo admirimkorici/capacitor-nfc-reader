@@ -52,6 +52,54 @@
         "docs": "",
         "complexTypes": [],
         "slug": "writenfctag"
+      },
+      {
+        "name": "startNfcReading",
+        "signature": "(data: any) => Promise<any>",
+        "parameters": [
+          {
+            "name": "data",
+            "docs": "",
+            "type": "any"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "startnfcreading"
+      },
+      {
+        "name": "stopNfcReading",
+        "signature": "(data: any) => Promise<any>",
+        "parameters": [
+          {
+            "name": "data",
+            "docs": "",
+            "type": "any"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "stopnfcreading"
+      },
+      {
+        "name": "setNfcDataCallback",
+        "signature": "(data: any) => Promise<any>",
+        "parameters": [
+          {
+            "name": "data",
+            "docs": "",
+            "type": "any"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "setnfcdatacallback"
       }
     ],
     "properties": []

@@ -9,7 +9,15 @@ export class nfcreaderWeb extends WebPlugin {
     }
     async WriteNFCTag(number) {
         return { value: number };
-        ;
+    }
+    async startNfcReading(data) {
+        return data;
+    }
+    async stopNfcReading(data) {
+        return data;
+    }
+    async setNfcDataCallback(data) {
+        return data;
     }
 }
 //# sourceMappingURL=web.js.map
