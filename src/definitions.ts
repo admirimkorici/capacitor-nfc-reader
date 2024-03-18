@@ -1,8 +1,4 @@
-declare module "@capacitor/core" {
-    interface PluginRegistry {
-        NFCTagReader: nfcreaderPlugin;
-    }
-}
+import { registerPlugin } from "@capacitor/core";
 
 export interface nfcreaderPlugin {
     echo(options: { value: string }): Promise<{ value: string }>;
@@ -13,3 +9,7 @@ export interface nfcreaderPlugin {
     checkNfcAvailability(options: { available: boolean }): Promise<{ available: boolean }>;
     readNfcTag(options: { data: string }): Promise<{ data: string }>;
 }
+
+const NFCTagReader = registerPlugin("nfcreader");
+
+export default NFCTagReader;

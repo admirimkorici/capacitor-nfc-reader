@@ -1,5 +1,5 @@
 {
-  "name": "nfcreader",
+  "name": "@adikorici/nfcreader",
   "version": "1.0.1",
   "description": "NFC Reader Plugin for Ionic Capacitor app",
   "main": "dist/plugin.cjs.js",

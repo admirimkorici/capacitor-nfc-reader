@@ -1,8 +1,3 @@
-declare module "@capacitor/core" {
-    interface PluginRegistry {
-        NFCTagReader: nfcreaderPlugin;
-    }
-}
 export interface nfcreaderPlugin {
     echo(options: {
         value: string;
@@ -28,3 +23,5 @@ export interface nfcreaderPlugin {
         data: string;
     }>;
 }
+declare const NFCTagReader: unknown;
+export default NFCTagReader;
