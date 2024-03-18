@@ -5,7 +5,7 @@ NFC Reader Plugin for Ionic Capacitor app
 ## Install
 
 ```bash
-npm install nfcreader
+npm install @adikorici/nfcreader
 npx cap sync
 ```
 
