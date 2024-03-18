@@ -84,6 +84,38 @@
         "docs": "",
         "complexTypes": [],
         "slug": "setnfcdatacallback"
+      },
+      {
+        "name": "checkNfcAvailability",
+        "signature": "(options: { available: boolean; }) => Promise<{ available: boolean; }>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ available: boolean; }"
+          }
+        ],
+        "returns": "Promise<{ available: boolean; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "checknfcavailability"
+      },
+      {
+        "name": "readNfcTag",
+        "signature": "(options: { data: string; }) => Promise<{ data: string; }>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ data: string; }"
+          }
+        ],
+        "returns": "Promise<{ data: string; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "readnfctag"
       }
     ],
     "properties": []

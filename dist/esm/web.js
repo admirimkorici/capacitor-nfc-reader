@@ -16,5 +16,11 @@ export class nfcreaderWeb extends WebPlugin {
     async setNfcDataCallback(data) {
         return data;
     }
+    async checkNfcAvailability(options) {
+        return { available: options.available };
+    }
+    async readNfcTag(options) {
+        return { data: options.data };
+    }
 }
 //# sourceMappingURL=web.js.map

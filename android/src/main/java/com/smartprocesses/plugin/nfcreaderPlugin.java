@@ -224,4 +224,48 @@ public class nfcreaderPlugin extends Plugin {
         NdefRecord recordNFC = new NdefRecord(NdefRecord.TNF_WELL_KNOWN,NdefRecord.RTD_TEXT,new byte[0],payload);
         return recordNFC;
     }
+
+    @PluginMethod
+    public void checkNfcAvailability(PluginCall call) {
+        // Check NFC availability and send result back to the Ionic app
+        NfcAdapter nfcAdapter = NfcAdapter.getDefaultAdapter(getContext());
+        boolean isNfcAvailable = (nfcAdapter != null); // Check NFC availability
+        JSObject result = new JSObject();
+        result.put("available", isNfcAvailable);
+        call.resolve(result);
+    }
+
+    @PluginMethod
+    public void readNfcTag(PluginCall call) {
+        // Read NFC tag and send data back to the Ionic app
+        Tag tag = mytag; // Get the NFC tag
+        String data = readFromNfcTag(tag); // Call your readFromNfcTag method
+        JSObject result = new JSObject();
+        result.put("data", data);
+        call.resolve(result);
+    }
+
+    private String readFromNfcTag(Tag tag) {
+        if (tag == null) {
+            Toast.makeText(context, "No NFC tag detected", Toast.LENGTH_SHORT).show();
+            return "";
+        }
+
+        Ndef ndef = Ndef.get(tag);
+        if (ndef == null) {
+            Toast.makeText(context, "Tag is not NDEF formatted", Toast.LENGTH_SHORT).show();
+            return "";
+        }
+
+        NdefMessage ndefMessage = ndef.getCachedNdefMessage();
+        if (ndefMessage != null) {
+            // Get the NDEF message content
+            String message = new String(ndefMessage.getRecords()[0].getPayload());
+            Toast.makeText(context, "NFC Tag Content: " + message, Toast.LENGTH_SHORT).show();
+            return message;
+        } else {
+            Toast.makeText(context, "Empty NDEF message", Toast.LENGTH_SHORT).show();
+            return "";
+        }
+    }
 }

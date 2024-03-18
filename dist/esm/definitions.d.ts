@@ -17,4 +17,14 @@ export interface nfcreaderPlugin {
     startNfcReading(data: any): Promise<any>;
     stopNfcReading(data: any): Promise<any>;
     setNfcDataCallback(data: any): Promise<any>;
+    checkNfcAvailability(options: {
+        available: boolean;
+    }): Promise<{
+        available: boolean;
+    }>;
+    readNfcTag(options: {
+        data: string;
+    }): Promise<{
+        data: string;
+    }>;
 }

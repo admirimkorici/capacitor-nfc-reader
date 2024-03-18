@@ -18,6 +18,8 @@ npx cap sync
 * [`startNfcReading(...)`](#startnfcreading)
 * [`stopNfcReading(...)`](#stopnfcreading)
 * [`setNfcDataCallback(...)`](#setnfcdatacallback)
+* [`checkNfcAvailability(...)`](#checknfcavailability)
+* [`readNfcTag(...)`](#readnfctag)
 
 </docgen-index>
 
@@ -95,6 +97,36 @@ setNfcDataCallback(data: any) => Promise<any>
 | **`data`** | <code>any</code> |
 
 **Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### checkNfcAvailability(...)
+
+```typescript
+checkNfcAvailability(options: { available: boolean; }) => Promise<{ available: boolean; }>
+```
+
+| Param         | Type                                 |
+| ------------- | ------------------------------------ |
+| **`options`** | <code>{ available: boolean; }</code> |
+
+**Returns:** <code>Promise&lt;{ available: boolean; }&gt;</code>
+
+--------------------
+
+
+### readNfcTag(...)
+
+```typescript
+readNfcTag(options: { data: string; }) => Promise<{ data: string; }>
+```
+
+| Param         | Type                           |
+| ------------- | ------------------------------ |
+| **`options`** | <code>{ data: string; }</code> |
+
+**Returns:** <code>Promise&lt;{ data: string; }&gt;</code>
 
 --------------------
 

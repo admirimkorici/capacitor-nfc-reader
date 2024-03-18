@@ -23,4 +23,12 @@ export class nfcreaderWeb extends WebPlugin implements nfcreaderPlugin {
     async setNfcDataCallback(data: any): Promise<any> {
         return data;
     }
+
+    async checkNfcAvailability(options: { available: boolean }): Promise<{ available: boolean }> {
+        return { available: options.available };
+    }
+
+    async readNfcTag(options: { data: string }): Promise<{ data: string }> {
+        return { data: options.data };
+    }
 }
