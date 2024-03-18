@@ -6,6 +6,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.nfc.FormatException;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
@@ -20,6 +21,7 @@ import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginMethod;
 import com.getcapacitor.annotation.CapacitorPlugin;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 
@@ -29,7 +31,8 @@ public class nfcreaderPlugin extends Plugin {
     private Tag mytag;
     private Context context;
     private nfcreader implementation = new nfcreader();
-
+    private PendingIntent nfcPendingIntent;
+    private static final String TAG = "NFCPlugin";
     interface NfcDataCallback {
         void onDataReceived(String nfcData);
     }
@@ -38,6 +41,10 @@ public class nfcreaderPlugin extends Plugin {
     public void load() {
         context = getContext();
         nfcAdapter = NfcAdapter.getDefaultAdapter(context);
+        // Initialize NFC pending intent
+        Intent nfcIntent = new Intent(getContext(), getActivity().getClass());
+        nfcIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        nfcPendingIntent = PendingIntent.getActivity(getContext(), 0, nfcIntent, PendingIntent.FLAG_IMMUTABLE);
         if (nfcAdapter == null) {
             Toast.makeText(context, "This device does not support NFC", Toast.LENGTH_SHORT).show();
         }
@@ -48,21 +55,6 @@ public class nfcreaderPlugin extends Plugin {
 
         JSObject ret = new JSObject();
         ret.put("value", implementation.echo(value));
-        call.resolve(ret);
-    }
-
-    @PluginMethod()
-    public void ReadNFCTag(PluginCall call){
-        String value = call.getString("msg") + " Test Test 1234";
-        JSObject ret = new JSObject();
-        ret.put("value", value);
-        call.resolve(ret);
-    }
-
-    @PluginMethod()
-    public void WriteNFCTag(PluginCall call) {
-        JSObject ret = new JSObject();
-        ret.put("value", 12345);
         call.resolve(ret);
     }
 
@@ -175,5 +167,61 @@ public class nfcreaderPlugin extends Plugin {
         } else {
             call.reject("NFC not supported on this device");
         }
+    }
+
+    @PluginMethod
+    public void writeNfcTag(PluginCall call) {
+        String data = call.getString("data");
+
+        // Check if NFC is available on the device
+        NfcAdapter nfcAdapter = NfcAdapter.getDefaultAdapter(getContext());
+        if (nfcAdapter == null) {
+            call.reject("NFC not supported on this device");
+            return;
+        }
+
+        try {
+            // Create an NDEF message with the data to write
+            NdefRecord record = NdefRecord.createTextRecord(null, data);
+            NdefMessage message = new NdefMessage(new NdefRecord[]{record});
+
+            // Write the NDEF message to the NFC tag using foreground dispatch
+            nfcAdapter.enableForegroundDispatch(getActivity(), nfcPendingIntent, null, null);
+            nfcAdapter.setNdefPushMessage(message, getActivity());
+            Toast.makeText(context, TAG + "This device does not support NFC", Toast.LENGTH_SHORT).show();
+            call.resolve();
+        } catch (Exception e) {
+            Toast.makeText(context, TAG + "Error writing NFC tag", Toast.LENGTH_SHORT).show();
+            call.reject("Error writing NFC tag: " + e.getMessage());
+        }
+    }
+
+    private void write(String text,Tag tag) throws IOException, FormatException {
+        NdefRecord[] records = {createRecord(text)};
+        NdefMessage message = new NdefMessage(records);
+        Ndef ndef = Ndef.get(tag);
+        ndef.connect();
+        ndef.writeNdefMessage(message);
+        ndef.close();
+
+    }
+
+
+    private NdefRecord createRecord(String text) throws UnsupportedEncodingException
+    {
+        String lang = "en";
+        byte[] textBytes = text.getBytes();
+        byte[] langBytes = lang.getBytes("US-ASCII");
+        int langLength = langBytes.length;
+        int textLength = textBytes.length;
+        byte[] payload = new byte[1+langLength + textLength];
+
+        payload[0] = (byte) langLength;
+
+        System.arraycopy(langBytes,0,payload,1,langLength);
+        System.arraycopy(textBytes,0,payload,1 + langLength,textLength);
+
+        NdefRecord recordNFC = new NdefRecord(NdefRecord.TNF_WELL_KNOWN,NdefRecord.RTD_TEXT,new byte[0],payload);
+        return recordNFC;
     }
 }

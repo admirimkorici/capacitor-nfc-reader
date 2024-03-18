@@ -6,13 +6,10 @@ export declare class nfcreaderWeb extends WebPlugin implements nfcreaderPlugin {
     }): Promise<{
         value: string;
     }>;
-    ReadNFCTag(options: {
-        msg: string;
+    writeNfcTag(options: {
+        data: string;
     }): Promise<{
         value: string;
-    }>;
-    WriteNFCTag(number: number): Promise<{
-        value: number;
     }>;
     startNfcReading(data: any): Promise<any>;
     stopNfcReading(data: any): Promise<any>;

@@ -8,12 +8,8 @@ export class nfcreaderWeb extends WebPlugin implements nfcreaderPlugin {
     return options;
   }
 
-    async ReadNFCTag(options: { msg: string }): Promise<{ value: string }> {
-        return { value: options.msg };
-    }
-
-    async WriteNFCTag(number: number): Promise<{ value: number }> {
-        return { value: number };
+    async writeNfcTag(options: { data: string }): Promise<{ value: string }> {
+        return { value: options.data };
     }
 
     async startNfcReading(data: any): Promise<any> {

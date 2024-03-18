@@ -22,32 +22,16 @@
         "slug": "echo"
       },
       {
-        "name": "ReadNFCTag",
-        "signature": "(options: { msg: string; }) => Promise<{ value: string; }>",
+        "name": "writeNfcTag",
+        "signature": "(options: { data: string; }) => Promise<{ value: string; }>",
         "parameters": [
           {
             "name": "options",
             "docs": "",
-            "type": "{ msg: string; }"
+            "type": "{ data: string; }"
           }
         ],
         "returns": "Promise<{ value: string; }>",
-        "tags": [],
-        "docs": "",
-        "complexTypes": [],
-        "slug": "readnfctag"
-      },
-      {
-        "name": "WriteNFCTag",
-        "signature": "(number: number) => Promise<{ value: number; }>",
-        "parameters": [
-          {
-            "name": "number",
-            "docs": "",
-            "type": "number"
-          }
-        ],
-        "returns": "Promise<{ value: number; }>",
         "tags": [],
         "docs": "",
         "complexTypes": [],

@@ -4,11 +4,8 @@ export class nfcreaderWeb extends WebPlugin {
         console.log('ECHO', options);
         return options;
     }
-    async ReadNFCTag(options) {
-        return { value: options.msg };
-    }
-    async WriteNFCTag(number) {
-        return { value: number };
+    async writeNfcTag(options) {
+        return { value: options.data };
     }
     async startNfcReading(data) {
         return data;

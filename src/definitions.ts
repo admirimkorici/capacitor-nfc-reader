@@ -6,8 +6,7 @@ declare module "@capacitor/core" {
 
 export interface nfcreaderPlugin {
     echo(options: { value: string }): Promise<{ value: string }>;
-    ReadNFCTag(options: { msg: string }): Promise<{ value: string }>;
-    WriteNFCTag(number: number): Promise<{ value: number }>;
+    writeNfcTag(options: { data: string }): Promise<{ value: string }>;
     startNfcReading(data: any): Promise<any>;
     stopNfcReading(data: any): Promise<any>;
     setNfcDataCallback(data: any): Promise<any>;
